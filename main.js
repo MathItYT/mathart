@@ -164,7 +164,7 @@ const addFunction = () => {
         updateFunction(inputDiv, functionInput.value);
     });
     deleteInputButton.addEventListener('click', () => {
-        functionEditor.removeChild(inputDiv);
+        functionEditorHeader.removeChild(inputDiv);
         if (functionEditor.children.length === 1) {
             addFunction();
         }
