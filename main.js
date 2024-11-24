@@ -98,7 +98,7 @@ let needRestartTime = false;
 let lastRestartTimeStamp = 0;
 
 deleteInputButton.addEventListener('click', () => {
-    functionEditor.removeChild(inputDiv);
+    functionEditorHeader.removeChild(inputDiv);
     if (functionEditor.children.length === 1) {
         addFunction();
     }
