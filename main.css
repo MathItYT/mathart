@@ -1,0 +1,237 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.roboto-thin {
+    font-family: "Roboto", serif;
+    font-weight: 100;
+    font-style: normal;
+  }
+  
+  .roboto-light {
+    font-family: "Roboto", serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  .roboto-regular {
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .roboto-medium {
+    font-family: "Roboto", serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  .roboto-bold {
+    font-family: "Roboto", serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  .roboto-black {
+    font-family: "Roboto", serif;
+    font-weight: 900;
+    font-style: normal;
+  }
+  
+  .roboto-thin-italic {
+    font-family: "Roboto", serif;
+    font-weight: 100;
+    font-style: italic;
+  }
+  
+  .roboto-light-italic {
+    font-family: "Roboto", serif;
+    font-weight: 300;
+    font-style: italic;
+  }
+  
+  .roboto-regular-italic {
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+  .roboto-medium-italic {
+    font-family: "Roboto", serif;
+    font-weight: 500;
+    font-style: italic;
+  }
+  
+  .roboto-bold-italic {
+    font-family: "Roboto", serif;
+    font-weight: 700;
+    font-style: italic;
+  }
+  
+  .roboto-black-italic {
+    font-family: "Roboto", serif;
+    font-weight: 900;
+    font-style: italic;
+  }
+
+#container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#canvas {
+  display: block;
+  height: 100vh;
+  max-width: 100vw;
+}
+
+
+#function-editor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 490px;
+    height: 100vh;
+    background-color: #f1f5f9;
+    transform: translateX(-100%);
+    transition: transform 0.5s;
+    display: flex;
+    flex-direction: column;
+}
+
+#add-button-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#add-function {
+    border-radius: 5px;
+    margin: 2.5px;
+    margin-top: 10px;
+    width: 200px;
+    border: none;
+    color: white;
+    padding: 10px;
+    font-size: 15px;
+    background-color: #475569;
+    cursor: pointer;
+}
+
+#import-button-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#import-functions {
+    border-radius: 5px;
+    margin: 2.5px;
+    width: 200px;
+    border: none;
+    color: white;
+    padding: 10px;
+    font-size: 15px;
+    background-color: #22c55e;
+    cursor: pointer;
+}
+
+#export-button-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#export-functions {
+    border-radius: 5px;
+    margin: 2.5px;
+    width: 200px;
+    border: none;
+    color: white;
+    padding: 10px;
+    font-size: 15px;
+    background-color: #0284c7;
+    cursor: pointer;
+}
+
+#function-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+.function {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #475569;
+    border-radius: 10px;
+    width: 400px;
+    cursor: pointer;
+}
+
+#function-editor.visible {
+    transform: translateX(0);
+}
+
+input:focus {
+    outline: none;
+}
+
+.function-input {
+    padding: 10px;
+    border: 1px solid #475569;
+    border-radius: 10px;
+    font-size: 15px;
+    margin: 10px;
+    width: 400px;
+    height: 50px;
+}
+
+.input-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-input-button {
+    border: none;
+    background-color: #ef4444;
+    color: #f1f5f9;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+#toggle-visibility {
+    margin: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    border-radius: 5px;
+    border: none;
+    color: #f1f5f9;
+    padding: 10px;
+    background-color: #475569;
+    cursor: pointer;
+}
