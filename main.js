@@ -99,7 +99,7 @@ let lastRestartTimeStamp = 0;
 
 deleteInputButton.addEventListener('click', () => {
     functionEditorHeader.removeChild(inputDiv);
-    if (functionEditor.children.length === 1) {
+    if (functionEditorHeader.children.length === 0) {
         addFunction();
     }
 });
@@ -165,7 +165,7 @@ const addFunction = () => {
     });
     deleteInputButton.addEventListener('click', () => {
         functionEditorHeader.removeChild(inputDiv);
-        if (functionEditor.children.length === 1) {
+        if (functionEditorHeader.children.length === 0) {
             addFunction();
         }
     });
