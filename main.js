@@ -42,14 +42,58 @@ const exportFunctions = () => {
     element.click();
 };
 
-math.import({
-    functionByParts: function (f, g, x) {
-        return (x <= 0) ? f(x) : g(x);
+function functionByParts(f, g, x) {
+    return (x <= 0) ? f(x) : g(x);
+};
+
+const functionByPartsTeX = (node, options) => {
+    return String.raw`\begin{cases} ${node.args[0].toTex(options)}\left(${node.args[2].toTex(options)}\right) & \text{if } ${node.args[2].toTex(options)} \leq 0 \\ ${node.args[1].toTex(options)}\left(${node.args[2].toTex(options)}\right) & \text{if } ${node.args[2].toTex(options)} > 0 \end{cases}`;
+};
+
+const sumFromAtoB = (a, b, f) => {
+    let sum = 0;
+    for (let i = a; i <= b; i++) {
+        sum += f(i);
     }
-}, {override: true});
+    return sum;
+};
+
+const sumFromAtoBTeX = (node, options) => {
+    return String.raw`\sum_{k=${node.args[0].toTex(options)}}^{${node.args[1].toTex(options)}} ${node.args[2].toTex(options)}(k)`;
+};
+
+const productFromAtoB = (a, b, f) => {
+    let product = 1;
+    for (let i = a; i <= b; i++) {
+        product *= f(i);
+    }
+    return product;
+}
+
+const productFromAtoBTeX = (node, options) => {
+    return String.raw`\prod_{k=${node.args[0].toTex(options)}}^{${node.args[1].toTex(options)}} ${node.args[2].toTex(options)}(k)`;
+};
+
+const derivative = (f, variable, a) => {
+    return math.derivative(parser.get(f), variable).evaluate({[variable]: a});
+};
+
+const derivativeTeX = (node, options) => {
+    return String.raw`\frac{d${node.args[0].toTex(options)}}{d${node.args[1].toTex(options)}}\left(${node.args[2].toTex(options)}\right)`;
+};
+
+const customLaTeX = {
+    'functionByParts': functionByPartsTeX,
+    'sumFromAtoB': sumFromAtoBTeX,
+    'productFromAtoB': productFromAtoBTeX,
+    'derivative': derivativeTeX,
+};
 
 const parser = math.parser();
-parser.set('functionByParts', math.functionByParts);
+parser.set('functionByParts', functionByParts);
+parser.set('sumFromAtoB', sumFromAtoB);
+parser.set('productFromAtoB', productFromAtoB);
+parser.set('derivative', derivative);
 let needRestartTime = false;
 let lastRestartTimeStamp = 0;
 
@@ -61,7 +105,7 @@ deleteInputButton.addEventListener('click', () => {
 });
 
 const mj = function (tex) {
-    return MathJax.tex2svg(tex, {em: 16, ex: 6, display: false});
+    return MathJax.tex2svg(tex, {em: 16, ex: 6, display: true});
 };
 
 const updateFunction = (inputDiv, value) => {
@@ -75,7 +119,7 @@ const updateFunction = (inputDiv, value) => {
     const node = math.parse(value);
     const mathjaxPreview = inputDiv.querySelector('.mathjax-preview');
     try {
-        const latex = node ? node.toTex({parenthesis: parenthesis, implicit: implicit}) : '';
+        const latex = node ? node.toTex({parenthesis: parenthesis, implicit: implicit, handler: customLaTeX}) : '';
         MathJax.typesetClear();
         mathjaxPreview.innerHTML = '';
         mathjaxPreview.appendChild(mj(latex));
